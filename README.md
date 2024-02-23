@@ -1,13 +1,13 @@
 # ComponentCacheGenerator
  A source generator that automatically generates a cache of components for Unity.
 
-ComponentCacheGenerator provides automatic generation of component caching code for Unity by generating code to cache `GetComponent<T>()` retrievals using a source generator, reducing the amount of code you need to write.
-
 [![license](https://img.shields.io/badge/LICENSE-MIT-green.svg)](LICENSE)
 ![unity-version](https://img.shields.io/badge/unity-2022.2+-000.svg)
 [![releases](https://img.shields.io/github/release/AnnulusGames/ComponentCacheGenerator.svg)](https://github.com/AnnulusGames/ComponentCacheGenerator/releases)
 
 [日本語版READMEはこちら](README_JA.md)
+
+ComponentCacheGenerator provides automatic generation of component caching code for Unity by generating code to cache `GetComponent<T>()` retrievals using a source generator, reducing the amount of code you need to write.
 
 ## Setup
 
