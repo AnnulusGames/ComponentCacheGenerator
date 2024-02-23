@@ -79,6 +79,15 @@ public sealed class ComponentCacheGenerator : IIncrementalGenerator
             ? null
             : typeSymbol.ContainingNamespace;
 
+        var hasAwake = typeSymbol.GetMembers("Awake").Any(x => x is IMethodSymbol methodSymbol && methodSymbol.Parameters.Length == 0);
+        var awakeCode = hasAwake ? "" :
+"""
+private void Awake()
+{
+    this.CacheComponents();
+}
+""";
+
         var fullType = typeSymbol.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)
             .Replace("global::", "")
             .Replace("<", "_")
@@ -135,6 +144,8 @@ partial class {{typeSymbol.Name}}
     {
         {{cacheMethodCode}}
     }
+
+    {{awakeCode}}
 }
 
 {{(ns == null ? "" : "}")}}
