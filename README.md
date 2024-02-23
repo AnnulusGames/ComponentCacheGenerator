@@ -97,6 +97,26 @@ void Awake()
 }
 ```
 
+It is also possible to specify the property name of the generated cache. If not specified, the class name of the target component converted to lower camel case will be used.
+
+```cs
+using UnityEngine;
+using ComponentCacheGenerator;
+
+[GenerateComponentCache(typeof(FooComponent), "foo")]
+[GenerateComponentCache(typeof(BarComponent), "bar")]
+[GenerateComponentCache(typeof(BazComponent), "baz")]
+public partial class SomeBehaviour : MonoBehaviour
+{
+    void Update()
+    {
+        foo.Foo();
+        bar.Bar();
+        bazCBaz();
+    }
+}
+```
+
 ## Generation Options
 
 You can specify generation code settings by specifying values for properties in the `[GenerateComponentCache]` attribute.
@@ -105,7 +125,6 @@ You can specify generation code settings by specifying values for properties in 
 | - | - |
 | SearchScope | Specifies the scope to search for components. If multiple are specified, the search will be performed in the order of Self > Children > Parent. (Default is Self) |
 | IsRequired | If IsRequired is true, an exception will be thrown if the component is not found when `CacheComponents()` is called. If the search scope is Self, `[RequireComponent]` attribute will be automatically generated. (Default is true) |
-| PropertyName | Specifies the name of the generated property. If not specified, the lower camel case version of the target component's class name will be used. |
 
 ## License
 

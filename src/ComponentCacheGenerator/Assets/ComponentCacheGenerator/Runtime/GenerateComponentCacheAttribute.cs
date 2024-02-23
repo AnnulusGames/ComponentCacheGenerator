@@ -18,9 +18,16 @@ namespace ComponentCacheGenerator
             ComponentType = componentType;
         }
 
-        public Type ComponentType { get; }
+        public GenerateComponentCacheAttribute(Type componentType, string propertyName)
+        {
+            ComponentType = componentType;
+            PropertyName = propertyName;
+        }
+
+        public Type ComponentType { get; } = null;
+        public string PropertyName { get; } = null;
+
         public ComponentSearchScope SearchScope { get; set; } = ComponentSearchScope.Self;
         public bool IsRequired { get; set; } = true;
-        public string PropertyName { get; set; } = null;
     }
 }
