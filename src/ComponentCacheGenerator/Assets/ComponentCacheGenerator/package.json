@@ -1,0 +1,14 @@
+{
+    "name": "com.annulusgames.component-cache-generator",
+    "version": "0.1.0",
+    "displayName": "Component Cache Generator",
+    "description": "A source generator that automatically generates a cache of components for Unity.",
+    "unity": "2022.2",
+    "dependencies": {
+        
+    },
+    "author": {
+        "name": "Annulus Games",
+        "url": "https://annulusgames.com/"
+    }
+}
