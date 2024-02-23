@@ -28,14 +28,16 @@ public sealed class ComponentCacheGenerator : IIncrementalGenerator
         context.RegisterSourceOutput(source, Emit);
     }
 
-    static void GetAttributeParameters(AttributeData attr, out INamedTypeSymbol targetType, out ComponentSearchScope searchScope, out bool isRequired, out string? propertyName)
+    static void GetAttributeParameters(AttributeData attr, out INamedTypeSymbol targetType, out string? propertyName, out ComponentSearchScope searchScope, out bool isRequired)
     {
         targetType = (INamedTypeSymbol)attr.ConstructorArguments[0].Value!;
+        propertyName = attr.ConstructorArguments.Length == 2
+            ? (string)attr.ConstructorArguments[1].Value!
+            : null;
 
         var properties = attr.NamedArguments.ToDictionary(kv => kv.Key, kv => kv.Value);
         searchScope = properties.TryGetValue("SearchScope", out var searchScopeConstant) ? (ComponentSearchScope)searchScopeConstant.Value! : ComponentSearchScope.Self;
         isRequired = properties.TryGetValue("IsRequired", out var isRequiredConstant) ? (bool)isRequiredConstant.Value! : true;
-        propertyName = properties.TryGetValue("PropertyName", out var propertyNameConstant) ? (string)propertyNameConstant.Value! : null;
     }
 
     static bool Verify(SourceProductionContext context, TypeDeclarationSyntax typeSyntax, INamedTypeSymbol targetType)
@@ -99,7 +101,7 @@ private void Awake()
 
         foreach (var attribute in source.Attributes)
         {
-            GetAttributeParameters(attribute, out var targetType, out var searchScope, out var isRequired, out var propertyName);
+            GetAttributeParameters(attribute, out var targetType, out var propertyName, out var searchScope, out var isRequired);
             var targetTypeFullName = targetType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
             var cachePropertyName = propertyName ?? MemberNames.ClassNameToFieldName(targetType.Name);
             cachePropertyCode.AppendLine($"private {targetTypeFullName} {cachePropertyName} {{ get; set; }}");

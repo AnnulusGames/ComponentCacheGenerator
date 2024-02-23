@@ -1,8 +1,8 @@
 using UnityEngine;
 using ComponentCacheGenerator;
 
-[GenerateComponentCache(typeof(Rigidbody), PropertyName = "rb")]
-[GenerateComponentCache(typeof(SampleComponent), PropertyName = "sample", SearchScope = ComponentSearchScope.Children)]
+[GenerateComponentCache(typeof(Rigidbody), "rb")]
+[GenerateComponentCache(typeof(SampleComponent), "sample", SearchScope = ComponentSearchScope.Children)]
 public partial class Sandbox : MonoBehaviour
 {
     void FixedUpdate()
