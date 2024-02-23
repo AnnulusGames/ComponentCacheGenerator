@@ -20,7 +20,7 @@ namespace ComponentCacheGenerator
 
         public Type ComponentType { get; }
         public ComponentSearchScope SearchScope { get; set; } = ComponentSearchScope.Self;
-        public bool IsRequired { get; set; } = false;
+        public bool IsRequired { get; set; } = true;
         public string PropertyName { get; set; } = null;
     }
 }
