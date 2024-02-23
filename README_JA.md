@@ -112,7 +112,7 @@ public partial class SomeBehaviour : MonoBehaviour
     {
         foo.Foo();
         bar.Bar();
-        bazCBaz();
+        baz.Baz();
     }
 }
 ```
