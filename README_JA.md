@@ -30,7 +30,7 @@ https://github.com/AnnulusGames/ComponentCacheGenerator.git?path=src/ComponentCa
 ```json
 {
     "dependencies": {
-        "com.annulusgames.enhanced-on-screen-stick": "https://github.com/AnnulusGames/ComponentCacheGenerator.git?path=src/ComponentCacheGenerator/Assets/ComponentCacheGenerator"
+        "com.annulusgames.component-cache-generator": "https://github.com/AnnulusGames/ComponentCacheGenerator.git?path=src/ComponentCacheGenerator/Assets/ComponentCacheGenerator"
     }
 }
 ```
