@@ -97,6 +97,26 @@ void Awake()
 }
 ```
 
+また、生成されるキャッシュのプロパティ名を指定することも可能です。指定がない場合には対象のコンポーネントのクラス名をlower camel caseに変換した名前が使用されます。
+
+```cs
+using UnityEngine;
+using ComponentCacheGenerator;
+
+[GenerateComponentCache(typeof(FooComponent), "foo")]
+[GenerateComponentCache(typeof(BarComponent), "bar")]
+[GenerateComponentCache(typeof(BazComponent), "baz")]
+public partial class SomeBehaviour : MonoBehaviour
+{
+    void Update()
+    {
+        foo.Foo();
+        bar.Bar();
+        bazCBaz();
+    }
+}
+```
+
 ## 生成オプション
 
 `[GenerateComponentCache]`属性のプロパティの値を指定することで、生成コードの設定を行うことが可能です。
@@ -105,7 +125,6 @@ void Awake()
 | - | - |
 | SearchScope | コンポーネントを探索する範囲を指定します。複数指定された場合はSelf > Children > Parentの順番で探索を行います。(デフォルトはSelf) |
 | IsRequired | IsRequiredがtrueの場合、`CacheComponents()`でコンポーネントが見つからなかったときに例外をスローします。また、探索範囲がSelfの場合は`[RequireComponent]`属性を自動で生成します。(デフォルトはtrue) |
-| PropertyName | 生成するプロパティの名前を指定します。指定がない場合には対象のコンポーネントのクラス名をlower camel caseに変換した名前が使用されます。 |
 
 ## ライセンス
 
